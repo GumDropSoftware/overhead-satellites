@@ -1,0 +1,13 @@
+{
+ "date": "2026-10-08",
+ "commit": null,
+ "source": "celestrak",
+ "objects": 16682,
+ "starlink": 11132,
+ "medianEpoch": "2026-10-08T07:26:49Z",
+ "files": {
+  "core": "elements/core.csv",
+  "starlink": "elements/starlink.csv",
+  "catalog": "catalog.csv"
+ }
+}
