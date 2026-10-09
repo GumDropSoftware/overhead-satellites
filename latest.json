@@ -1,10 +1,10 @@
 {
- "date": "2026-10-08",
- "commit": "18896fe55550303daff9a9b37c96fc10d13dfd42",
+ "date": "2026-10-09",
+ "commit": "c2139aba210ca7a37a8f972d547947216a1dc261",
  "source": "celestrak",
  "objects": 16682,
  "starlink": 11132,
- "medianEpoch": "2026-10-08T07:26:49Z",
+ "medianEpoch": "2026-10-08T15:50:12Z",
  "files": {
   "core": "elements/core.csv",
   "starlink": "elements/starlink.csv",
