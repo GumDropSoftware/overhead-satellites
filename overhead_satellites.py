@@ -243,8 +243,8 @@ def nightly(day=None):
     except Unreachable as error:
         log(f"{error}; the next run today will try again")
         return
+    prune_history()  # before build: a rebase refuses a tree holding today's uncommitted files
     build(src, ROOT, day)
-    prune_history()
     publish(day)
     for name in os.listdir(WORK):
         try:
