@@ -194,6 +194,9 @@ def prune_history(keep_days=KEEP_DAYS, now=None):
     starting commit and the recent commits are replayed on top (then force-pushed). Phones never hold a commit older than
     a day (`latest.json` is re-read every 6 h), and `nightly` publishes a fresh latest.json right after this, so nothing
     they read goes missing. Returns True when history was rewritten."""
+    if os.path.exists(os.path.expanduser("~/overhead-satellites.hold-fold")):
+        log("history fold held (delete ~/overhead-satellites.hold-fold to allow it)")
+        return False
     now = now or datetime.now(timezone.utc)
     cutoff = int((now - timedelta(days=keep_days)).timestamp())
     first = git("rev-list", "--max-parents=0", "HEAD").splitlines()[-1]
