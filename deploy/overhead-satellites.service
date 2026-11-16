@@ -1,0 +1,21 @@
+[Unit]
+Description=Overhead satellite list: fetch today's orbital elements and publish them
+Documentation=https://github.com/GumDropSoftware/overhead-satellites
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+# @USER@ and @HOME@ are filled in by install-on-pi.sh.
+User=@USER@
+WorkingDirectory=@HOME@/projects/overhead-satellites
+ExecStart=/usr/bin/python3 -I @HOME@/projects/overhead-satellites/overhead_satellites.py nightly
+# A background job: it yields to everything else the machine runs.
+Nice=19
+CPUWeight=10
+IOSchedulingClass=idle
+LimitAS=1G
+OOMScoreAdjust=1000
+MemoryMax=512M
+MemorySwapMax=0
+TimeoutStartSec=20min
