@@ -56,6 +56,8 @@ class Unreachable(Exception):
 
 
 def download(url, path):
+    if os.path.exists(path):  # written only once complete: a retry asks only for what's missing
+        return
     request = urllib.request.Request(url, headers=UA)
     try:
         with urllib.request.urlopen(request, timeout=120) as response:
