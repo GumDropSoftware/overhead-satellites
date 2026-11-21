@@ -16,6 +16,7 @@ GitHub Actions job) and only `publish` knows about this machine's git checkout:
 from __future__ import annotations
 
 import csv
+import http.client
 import io
 import json
 import os
@@ -63,6 +64,8 @@ def download(url, path):
         raise Refused(f"{url} answered HTTP {error.code}") from error
     except urllib.error.URLError as error:
         raise Unreachable(f"{url}: {error.reason}") from error
+    except (OSError, http.client.HTTPException) as error:  # timed out or cut off mid-download
+        raise Unreachable(f"{url}: {error!r}") from error
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "wb") as f:
         f.write(data)
